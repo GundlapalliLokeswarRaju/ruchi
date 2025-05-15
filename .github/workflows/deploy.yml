@@ -1,0 +1,22 @@
+name: Deploy to EC2 with Docker
+
+on:
+  push:
+    branches:
+      - main   # or use 'dev' if you deploy from dev branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy via SSH to EC2
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_KEY }}
+        script: |
+          cd /home/ubuntu/myproject  # path to your project
+          git pull origin main       # pull latest code
+          ./deploy.sh                # run deployment script
