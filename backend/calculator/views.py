@@ -8,6 +8,6 @@ def add_numbers(request):
         data = json.loads(request.body)
         a = int(data.get('a', 0))
         b = int(data.get('b', 0))
-        result = a * b
+        result = a + b
         return JsonResponse({'result': result})
     return JsonResponse({'error': 'Invalid request'}, status=400)
