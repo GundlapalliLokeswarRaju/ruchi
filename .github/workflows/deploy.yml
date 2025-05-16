@@ -14,9 +14,15 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            # Clean up disk space first
+            docker system prune --all --force --volumes
+            rm -rf /tmp/*
+            sudo apt-get clean
+
             cd /home/***/myproject
             git fetch origin main
             git reset --hard origin/main
+
             # Check which docker-compose command works
             if command -v docker-compose &> /dev/null; then
               docker-compose up -d --build
