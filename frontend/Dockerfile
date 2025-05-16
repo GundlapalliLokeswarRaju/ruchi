@@ -1,20 +1,14 @@
-# ---------- Build Stage ----------
+# Build Stage
 FROM node:18-alpine as build
 
 # Set working directory
 WORKDIR /app
-
-# Copy package files and install dependencies
 COPY package.json package-lock.json ./
 RUN npm install
-
-# Copy the rest of the application code
 COPY . .
-
-# Build the React app
 RUN npm run build
 
-# ---------- Serve Stage ----------
+# Serve Stage
 FROM nginx:alpine
 
 # Remove default nginx website
