@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+
 function App() {
   const [a, setA] = useState('');
   const [b, setB] = useState('');
   const [result, setResult] = useState(null);
+
   const handleAdd = async () => {
     try {
       const response = await axios.post('http://localhost:8000/api/add/', {
@@ -15,6 +17,7 @@ function App() {
       console.error('Error:', error);
     }
   };
+
   return (
     <div style={{ padding: '20px' }}>
       <h2>Simple Calculator</h2>
@@ -25,4 +28,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
