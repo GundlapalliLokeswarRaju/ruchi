@@ -6,8 +6,8 @@ on:
       - main   # or use 'dev' if you deploy from dev branch
 
 jobs:
-  deploy:
-    runs-on: ubuntu
+  build-test-deploy:
+    runs-on: self-hosted
 
     steps:
     - name: Deploy via SSH to EC2
