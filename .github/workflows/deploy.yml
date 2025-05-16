@@ -3,10 +3,11 @@ name: Deploy to EC2 with Docker
 on:
   push:
     branches:
-      - main   # or use 'dev' if you deploy from dev branch
+      - main
 
 jobs:
-  build-test-deploy:
+  deploy:
+    name: Build and Deploy to EC2
     runs-on: ubuntu-latest
 
     steps:
@@ -17,6 +18,6 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_KEY }}
         script: |
-          cd /home/ubuntu/myproject  # path to your project
-          git pull origin main       # pull latest code
-          ./deploy.sh                # run deployment script
+          cd /home/ubuntu/myproject
+          git pull origin main
+          ./deploy.sh
