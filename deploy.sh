@@ -1,13 +1,15 @@
 #!/bin/bash
 
-GITHUB_USER="BigClasses-stack"
-GITHUB_TOKEN="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"
+# Navigate to project directory
+cd /home/ubuntu/myproject
 
-echo "Pulling latest code..."
-git pull https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/${GITHUB_USER}/myproject.git
+# Optional: reset local changes to avoid conflicts
+git reset --hard
+git clean -fd
+
+# Pull latest code from GitHub using SSH
 git pull origin main
 
-echo "Building Docker containers..."
-docker-compose down
-docker-compose build
-docker-compose up -d
+# Build and deploy (adjust based on your app)
+docker compose down
+docker compose up --build -d
