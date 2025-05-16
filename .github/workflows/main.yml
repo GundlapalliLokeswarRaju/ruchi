@@ -14,7 +14,7 @@ jobs:
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_KEY }}
+        key: ${{ secrets.SSH_KEY }}
         script: |
           cd myproject
           ./deploy.sh
