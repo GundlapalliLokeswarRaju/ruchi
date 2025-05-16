@@ -1,12 +1,18 @@
-# Build Stage
-FROM node:18-alpine as build
+# Stage 1: Build React app
+FROM node:18-alpine AS build
 
 WORKDIR /app
+
 COPY package.json package-lock.json ./
 RUN npm install
-COPY . .
-RUN npm run build
 
+COPY . .
+
+# ⬇️ This line fixes permission issues
+RUN chmod +x node_modules/.bin/react-scripts
+
+# Build your React app
+RUN npm run build
 # Serve Stage
 FROM nginx:alpine
 
