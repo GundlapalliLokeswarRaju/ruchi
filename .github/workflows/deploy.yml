@@ -14,10 +14,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            # Clean up disk space first
-            docker system prune --all --force --volumes
-            rm -rf /tmp/*
-            sudo apt-get clean
+            
 
             cd /home/***/myproject
             git fetch origin main
