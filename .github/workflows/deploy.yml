@@ -1,5 +1,9 @@
-branches:
-  - main
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
