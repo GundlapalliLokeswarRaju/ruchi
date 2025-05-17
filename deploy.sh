@@ -1,15 +1,19 @@
 #!/bin/bash
 
-# Navigate to project directory
-cd /home/ubuntu/myproject
+cd /home/ubuntu/myproject || exit 1
 
-# Optional: reset local changes to avoid conflicts
-git reset --hard
-git clean -fd
+# Stash local changes
+git stash
 
-# Pull latest code from GitHub using SSH
+# Ensure we handle divergence (use merge by default)
+git config pull.rebase false
+
+# Pull latest changes from origin/main
 git pull origin main
 
-# Build and deploy (adjust based on your app)
+# Re-apply stashed changes if needed
+git stash pop || true
+
+# Run Docker deployment
 docker compose down
-docker compose up --build -d
+docker compose up -d --build
