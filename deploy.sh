@@ -1,20 +1,13 @@
-#!/bin/bash
+sudo yum update -y
+sudo yum install docker -y
+sudo service docker start
+sudo usermod -aG docker ec2-user
 
-cd /home/ubuntu/myproject
+# Install Docker Compose plugin
+mkdir -p ~/.docker/cli-plugins/
+curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
+    -o ~/.docker/cli-plugins/docker-compose
+chmod +x ~/.docker/cli-plugins/docker-compose
 
-echo "Setting upstream to origin/main..."
-git branch --set-upstream-to=origin/main main || true
-
-echo "Stashing any local changes..."
-git stash
-
-echo "Pulling latest changes..."
-git pull origin main
-
-echo "Applying any stashed changes..."
-git stash pop || true
-
-# Example: Run Docker or other deployment steps here
-echo "Running Docker deployment..."
-docker compose down
-docker compose up -d --build
+# Test
+docker compose version
