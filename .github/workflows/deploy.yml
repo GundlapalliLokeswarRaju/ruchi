@@ -1,12 +1,9 @@
-name: Deploy to EC2 with Docker
-
-on:
-  push:
-    branches:
-      - main
+branches:
+  - main
 
 jobs:
   deploy:
+    name: Build and Deploy to EC2
     runs-on: ubuntu-latest
 
     steps:
