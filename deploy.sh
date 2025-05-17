@@ -1,16 +1,20 @@
-                                                               deploy.sh                                                                             
 #!/bin/bash
 
-# Navigate to project directory
 cd /home/ubuntu/myproject
 
-# Optional: reset local changes to avoid conflicts
-git reset --hard
-git clean -fd
+echo "Setting upstream to origin/main..."
+git branch --set-upstream-to=origin/main main || true
 
-# Pull latest code from GitHub using SSH
+echo "Stashing any local changes..."
+git stash
+
+echo "Pulling latest changes..."
 git pull origin main
 
-# Build and deploy (adjust based on your app)
+echo "Applying any stashed changes..."
+git stash pop || true
+
+# Example: Run Docker or other deployment steps here
+echo "Running Docker deployment..."
 docker compose down
-docker compose up --build -d
+docker compose up -d --build
