@@ -1,7 +1,6 @@
-#!/bin/bash
-
 set -e  # Exit on any error
 cd /home/ubuntu/myproject
+
 
 git config pull.rebase false
 git pull origin main
