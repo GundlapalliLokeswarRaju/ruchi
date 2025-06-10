@@ -1,5 +1,5 @@
 set -e  # Exit on any error
-cd /home/ubuntu/stage/myproject/
+cd /home/ubuntu/stage/ruchi/
 
 
 git config pull.rebase false
