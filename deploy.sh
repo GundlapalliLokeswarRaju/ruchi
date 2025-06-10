@@ -1,9 +1,9 @@
 set -e  # Exit on any error
-cd /home/ubuntu/myproject
+cd /home/ubuntu/stage/myproject/
 
 
 git config pull.rebase false
-git pull origin main
+git pull origin stage
 
 docker compose down
 docker compose up -d --build
