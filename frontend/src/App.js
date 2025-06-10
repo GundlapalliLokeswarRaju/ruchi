@@ -7,7 +7,7 @@ function App() {
 
   const handleAdd = async () => {
     try {
-      const response = await axios.post('http://98.84.124.195:8000/api/add/', {
+      const response = await axios.post('http://localhost:8000/api/add/', {
         a: parseInt(a),
         b: parseInt(b),
       });
